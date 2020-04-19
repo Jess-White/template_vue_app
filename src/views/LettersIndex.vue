@@ -20,19 +20,16 @@
             <h5 class="card-name">{{letter.title}}</h5>
 
             <h5 class="card-text">{{letter.user_id}}</h5>
-            <h5 class="card-text">{{letter.referee_id}}</h5>
 
-            <p class="card-text">{{letter.recipient_info}}</p>
-            <p class="card-text">{{letter.date}}</p>
-            <p class="card-text">{{letter.section_background}}
-            </p>
-            <p class="card-text">{{letter.section_relationship}}
-            </p>
-            <p class="card-text">{{letter.section_strengths}}
-            </p>
+            <p class="card-text">{{letter.section_opener}}</p>
+            <p class="card-text">{{section_body}}</p>
             <p class="card-text">{{letter.section_closer}}
             </p>
 
+            <p class="card-text">{{letter.created_at}}
+            </p>
+            <p class="card-text">{{letter.updated_at}}
+            </p>
           </div>
         </div>
 
