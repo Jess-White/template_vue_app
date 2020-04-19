@@ -18,17 +18,17 @@
 
         <div class="form-group">
           <label>Section Opener: </label>
-          <input class="form-control" type="text" v-model="recipient_info">
+          <input class="form-control" type="text" v-model="section_opener">
         </div>
 
         <div class="form-group">
           <label>Section Body: </label>
-          <input class="form-control" type="text" v-model="date">
+          <input class="form-control" type="text" v-model="section_body">
         </div>
 
          <div class="form-group">
           <label>Section Closer: </label>
-          <input class="form-control" type="text" v-model="bio">
+          <input class="form-control" type="text" v-model="section_closer">
         </div>
 
       </div>
@@ -59,20 +59,16 @@
       createLetter: function() {
         var clientParams = {
         user_id: this.userId,
-        referee_id: this.refereeId,
         title: this.title,
-        recipient_info: this.recipientInfo,
-        date: this.date,
-        section_background: this.sectionBackground,
-        section_relationship: this.sectionRelationship,
-        section_strengths: this.sectionStrengths,
+        section_opener: this.sectionOpener,
+        section_body: this.sectionBody,
         section_closer: this.sectionCloser
       };
 
       axios
         .post("/api/letters/", clientParams)
         .then(response => {
-          this.$router.push("/letters/" + response.data.id);
+          this.$router.push("/letters/new");
         }).catch(error => {
           this.errors = error.response.data.
             errors;
