@@ -60,8 +60,12 @@
       };
     },
   created: function() {
-    axios
-    .get("/api/letters")
+    const token = localStorage.getItem("jwt");
+    axios({
+      url: "/api/letters/",
+      method: "get",
+      headers: {"Authorization": `Bearer ${token}`}
+    })
     .then(response => {
       this.letters = response.data;
     });

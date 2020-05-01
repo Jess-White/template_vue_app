@@ -65,9 +65,6 @@ export default {
         last_name: this.last_name,
         email: this.email,
         title: this.title,
-        company_city: this.companyCity,
-        company_zip: this.companyZip,
-        email: this.email,
         password: this.password,
         password_confirmation: this.passwordConfirmation
       };

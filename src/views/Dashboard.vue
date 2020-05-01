@@ -21,7 +21,13 @@ export default {
       message: "View saved letters, or start a new letter!"
     };
   },
-  created: function() {},
+  created: function() {
+    axios
+      .get("/api/users" + this.user_id)
+      .then(response=> {
+        this.users = response.data;
+      })
+  },
   methods: {}
 };
 </script>

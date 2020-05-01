@@ -7,7 +7,14 @@
         <h4 class="text-center">Section Opener: {{letter.section_opener}}</h4>
         <h4 class="text-center">Section Body: {{letter.section_body}}</h4>
         <h4 class="text-center">Section Closer: {{letter.section_closer}}</h4>
-      </h4>
+        </h4>
+       </div>
+       <div class="col-md-6">
+        <h4 class="text-center">First Name: {{user.first_name}}</h4>
+        <h4 class="text-center">Last Name: {{user.last_name}}</h4>
+        <h4 class="text-center">Email: {{user.email}}</h4>
+        <h4 class="text-center">Title: {{user.title}}</h4>
+        </h4>
        </div>
        <div>
           <router-link class="btn btn-info m-2" v-bind:to="'/letters/' + letter.id + '/edit'">Edit</router-link>
@@ -34,10 +41,11 @@ var axios = require('axios');
           title: "",
           section_opener: "",
           section_body: "",
-          section_closer: ""
+          section_closer: "",
+          errors: []
         },
-        errors: []
-      };
+      currentUser: {},
+    };
     },
     created: function() {
       axios 
@@ -45,6 +53,11 @@ var axios = require('axios');
         .then(response => {
           this.letter = response.data
         });
+      axios
+        .get("/api/users" + this.user_id)
+        .then(response=> {
+          this.users = response.data;
+        })
     },
     methods: {
       destroyLetter: function() {

@@ -18,18 +18,20 @@
 
         <div class="form-group">
           <label>Section Opener: </label>
-          <input class="form-control" type="text" v-model="section_opener">
+          <input class="form-control" type="text" v-model="sectionOpener">
         </div>
 
         <div class="form-group">
           <label>Section Body: </label>
-          <input class="form-control" type="text" v-model="section_body">
+          <input class="form-control" type="text" v-model="sectionBody">
         </div>
 
          <div class="form-group">
           <label>Section Closer: </label>
-          <input class="form-control" type="text" v-model="section_closer">
+          <input class="form-control" type="text" v-model="sectionCloser">
         </div>
+        <input class="btn btn-info" type="submit" value="Create Letter">
+      </form>
 
       </div>
 
@@ -46,11 +48,11 @@
     data: function() {
       return {
         id: "",
-        user_id: "",
+        userId: "",
         title: "",
-        section_opener: "",
-        section_body: "",
-        section_closer: "",
+        sectionOpener: "",
+        sectionBody: "",
+        sectionCloser: "",
         errors: []
       };
     },
@@ -64,16 +66,27 @@
         section_body: this.sectionBody,
         section_closer: this.sectionCloser
       };
+      const token = localStorage.getItem("jwt")
 
-      axios
-        .post("/api/letters/", clientParams)
+      axios ({
+        url: "/api/letters/", 
+        data: clientParams,
+        method: "post",
+        headers: {"Authorization": `Bearer ${token}`}
+        })
         .then(response => {
-          this.$router.push("/letters/new");
+          this.$router.push("/letters");
         }).catch(error => {
           this.errors = error.response.data.
             errors;
           this.status = error.response.status;
         });
+      axios
+        // .get("/api/users" + this.user_id)
+        .get("/api/users/" + 1)
+        .then(response=> {
+          this.users = response.data;
+        })
     }
   }
 };
